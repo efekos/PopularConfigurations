@@ -9,13 +9,12 @@ import java.util.regex.Pattern;
 
 public class ConfigMessageProvider implements MessageProvider {
 
+    public static final Pattern hexPattern = Pattern.compile("(&#[0-9a-fA-F]{6})");
     private final Config config;
 
     public ConfigMessageProvider(Config config) {
         this.config = config;
     }
-
-    public static final Pattern hexPattern = Pattern.compile("(&#[0-9a-fA-F]{6})");
 
     private String translate(String message) {
         String newMessage = message;
@@ -31,7 +30,7 @@ public class ConfigMessageProvider implements MessageProvider {
 
     @Override
     public String format(String key, Placeholder... placeholders) {
-        String f = config.getString(key,"&c"+key);
+        String f = config.getString(key, "&c" + key);
         for (Placeholder placeholder : placeholders) f = placeholder.replace(f);
         return translate(f);
     }

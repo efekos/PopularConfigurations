@@ -2,17 +2,17 @@ package dev.efekos.pc.spigot;
 
 public class Placeholder {
 
-    public static Placeholder of(String name,String value){
-        return new Placeholder(name,value);
-    }
+    private final String name;
+    private final String value;
 
-    private Placeholder(String name,String value){
+    private Placeholder(String name, String value) {
         this.name = name;
         this.value = value;
     }
 
-    private final String name;
-    private final String value;
+    public static Placeholder of(String name, String value) {
+        return new Placeholder(name, value);
+    }
 
     public String getName() {
         return name;
@@ -22,8 +22,8 @@ public class Placeholder {
         return value;
     }
 
-    public String replace(String input){
-        return input.replace("%"+name+"%",value);
+    public String replace(String input) {
+        return input.replace("%" + name + "%", value);
     }
 
 }

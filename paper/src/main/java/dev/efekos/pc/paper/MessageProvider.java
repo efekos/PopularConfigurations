@@ -8,6 +8,7 @@ import java.util.List;
 public interface MessageProvider {
 
     Component format(String key, TagResolver... placeholders);
+
     List<Component> formatList(String key, MessagePortionHider hider, TagResolver... placeholders);
 
 }

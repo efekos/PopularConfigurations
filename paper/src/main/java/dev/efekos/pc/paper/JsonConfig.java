@@ -301,7 +301,7 @@ public class JsonConfig implements Config {
     @Override
     public List<String> getStringList(String key) {
         List<Object> list = arrayValues.get(key);
-        if(list instanceof List l) return (List<String>) l;
+        if (list instanceof List l) return (List<String>) l;
         else return new ArrayList<>();
     }
 
