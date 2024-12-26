@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package dev.efekos.pc.paper;
+package dev.efekos.pc;
 
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;

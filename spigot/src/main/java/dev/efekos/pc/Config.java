@@ -1,4 +1,4 @@
-package dev.efekos.pc.paper;
+package dev.efekos.pc;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package dev.efekos.pc.spigot;
+package dev.efekos.pc;
 
 import net.md_5.bungee.api.ChatColor;
 

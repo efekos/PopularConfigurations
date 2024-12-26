@@ -1,4 +1,4 @@
-package dev.efekos.pc.spigot;
+package dev.efekos.pc;
 
 import javax.annotation.MatchesPattern;
 import javax.annotation.Nonnull;

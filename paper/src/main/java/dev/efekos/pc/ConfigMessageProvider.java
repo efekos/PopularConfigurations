@@ -1,4 +1,4 @@
-package dev.efekos.pc.paper;
+package dev.efekos.pc;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 
 public class ConfigMessageProvider implements MessageProvider {
 
-    public static final Pattern hexPattern = Pattern.compile("(&#[0-9a-fA-F]{6})");
     private final Config config;
     private final MiniMessage message = MiniMessage.miniMessage();
 

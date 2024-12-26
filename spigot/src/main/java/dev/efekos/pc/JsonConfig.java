@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package dev.efekos.pc.spigot;
+package dev.efekos.pc;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;

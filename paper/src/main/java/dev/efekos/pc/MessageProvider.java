@@ -1,4 +1,4 @@
-package dev.efekos.pc.paper;
+package dev.efekos.pc;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
