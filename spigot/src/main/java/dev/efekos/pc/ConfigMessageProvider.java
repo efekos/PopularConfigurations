@@ -54,7 +54,7 @@ public class ConfigMessageProvider implements MessageProvider {
 
     @Override
     public String format(String key, Placeholder... placeholders) {
-        String f = "&r"+config.getString(key, "&c" + key);
+        String f = "&r" + config.getString(key, "&c" + key);
         for (Placeholder placeholder : placeholders) f = placeholder.replace(f);
         return translate(f);
     }
@@ -65,7 +65,7 @@ public class ConfigMessageProvider implements MessageProvider {
         ArrayList<String> newList = new ArrayList<>();
         for (String s : list)
             if (!hider.shouldHide(s)) {
-                String s1 = "&r"+s.replaceFirst("^\\$\\?([A-Z0-9]+(?:,[A-Z0-9]+)*):", "");
+                String s1 = "&r" + s.replaceFirst("^\\$\\?([A-Z0-9]+(?:,[A-Z0-9]+)*):", "");
                 for (Placeholder placeholder : placeholders) s1 = placeholder.replace(s1);
                 newList.add(translate(s1));
             }

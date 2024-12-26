@@ -30,7 +30,6 @@ import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class ConfigMessageProvider implements MessageProvider {
 

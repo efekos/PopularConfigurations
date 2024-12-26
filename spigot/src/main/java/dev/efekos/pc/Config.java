@@ -33,6 +33,7 @@ public interface Config {
 
     /**
      * Tries to find a list of strings in this config. Will return an empty list if the list wasn't found.
+     *
      * @param key Input key.
      * @return Whatever found.
      */
@@ -40,6 +41,7 @@ public interface Config {
 
     /**
      * Tries to find a string in this config.
+     *
      * @param key Input key.
      * @param def Default value to return if the result was {@code null}.
      * @return Whatever found.
@@ -48,6 +50,7 @@ public interface Config {
 
     /**
      * Tries to find a boolean in this config.
+     *
      * @param key Input key.
      * @param def Default value to return if the result was {@code null}.
      * @return Whatever found.
@@ -56,6 +59,7 @@ public interface Config {
 
     /**
      * Tries to find an integer in this config.
+     *
      * @param key Input key.
      * @param def Default value to return if the result was {@code null}.
      * @return Whatever found.
@@ -64,6 +68,7 @@ public interface Config {
 
     /**
      * Tries to find a double in this config.
+     *
      * @param key Input key.
      * @param def Default value to return if the result was {@code null}.
      * @return Whatever found.
@@ -82,6 +87,7 @@ public interface Config {
 
     /**
      * Creates a message provider from this config.
+     *
      * @return New message provider.
      */
     default MessageProvider asMessageProvider() {
