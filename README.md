@@ -8,6 +8,15 @@
 ![](https://badgen.net/github/merged-prs/efekos/PopularConfigrations)
 ![](https://badgen.net/github/issues/efekos/PopularConfigrations)
 
+<!-- TOC -->
+* [PopularConfigurations](#popularconfigurations)
+  * [Installation](#installation)
+    * [Maven](#maven)
+    * [Gradle](#gradle)
+  * [Usage](#usage)
+* [License](#license)
+<!-- TOC -->
+
 A lightweight, basic configuration library to use in Spigot or Paper plugins.
 
 ## Installation
@@ -92,3 +101,7 @@ public class MyPlugin extends JavaPlugin {
 
 }
 ````
+
+# License
+
+This project is licensed with the [MIT License](./LICENSE.md).
