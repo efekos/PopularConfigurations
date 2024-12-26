@@ -36,43 +36,16 @@ import java.util.*;
  */
 public class JsonConfig implements Config {
 
-    /**
-     * Name of the resource that will be cloned from plugin resources. This makes it really easy to make custom configs. All you have to do it change the resource name.
-     */
     private final String resourceName;
 
-    /**
-     * A map of the keys that has a string value. Every string is stored here.
-     */
     private final Map<String, String> stringValues = new HashMap<>();
-    /**
-     * A map of the keys that has a number value. Any number that isn't decimal is stored here.
-     */
     private final Map<String, Integer> numberValues = new HashMap<>();
-    /**
-     * A map of the keys that has a number value. Only numbers that is compatible for a double is stored here.
-     */
     private final Map<String, Double> doubleValues = new HashMap<>();
-    /**
-     * A map of the keys that has a boolean value. Every boolean is stored here.
-     */
     private final Map<String, Boolean> booleanValues = new HashMap<>();
-    /**
-     * A map of the keys that has a boolean value. Every string that has only one character is stored here.
-     */
     private final Map<String, Character> characterValues = new HashMap<>();
-    /**
-     * A map of the keys that has an array value. Type of the array is unknown.
-     */
     private final Map<String, List<Object>> arrayValues = new HashMap<>();
-    /**
-     * List of the keys that has the value {@code null}.
-     */
     private final List<String> nullValues = new ArrayList<>();
 
-    /**
-     * The plugin that uses this config.
-     */
     private final JavaPlugin plugin;
 
     /**
