@@ -1,12 +1,12 @@
 ![](assets/PopularConfigurations.png)
 # PopularConfigurations
 
-![](https://badgen.net/github/license/efekos/PopularConfigrations)
-![](https://badgen.net/github/stars/efekos/PopularConfigrations)
-![](https://badgen.net/github/release/efekos/PopularConfigrations)
-![](https://badgen.net/github/releases/efekos/PopularConfigrations)
-![](https://badgen.net/github/merged-prs/efekos/PopularConfigrations)
-![](https://badgen.net/github/issues/efekos/PopularConfigrations)
+![](https://badgen.net/github/license/efekos/PopularConfigurations)
+![](https://badgen.net/github/stars/efekos/PopularConfigurations)
+![](https://badgen.net/github/release/efekos/PopularConfigurations)
+![](https://badgen.net/github/releases/efekos/PopularConfigurations)
+![](https://badgen.net/github/merged-prs/efekos/PopularConfigurations)
+![](https://badgen.net/github/issues/efekos/PopularConfigurations)
 
 <!-- TOC -->
 * [PopularConfigurations](#popularconfigurations)
