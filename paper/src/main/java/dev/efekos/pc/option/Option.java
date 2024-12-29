@@ -28,19 +28,19 @@ public class Option<T> {
 
     private final String key;
     private final T defaultValue;
-    private final OptionType<T,?> optionType;
+    private final OptionType<T> optionType;
 
-    public static <T,S> Option<T> of(String key, OptionType<T,S> optionType, T defaultValue) {
+    public static <T> Option<T> of(String key, OptionType<T> optionType, T defaultValue) {
         return new Option<>(key,defaultValue,optionType);
     }
 
-    private Option(String key, T defaultValue, OptionType<T,?> optionType) {
+    private Option(String key, T defaultValue, OptionType<T> optionType) {
         this.key = key;
         this.defaultValue = defaultValue;
         this.optionType = optionType;
     }
 
-    public OptionType<T, ?> getOptionType() {
+    public OptionType<T> getOptionType() {
         return optionType;
     }
 
