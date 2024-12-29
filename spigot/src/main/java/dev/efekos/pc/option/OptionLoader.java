@@ -27,6 +27,7 @@ package dev.efekos.pc.option;
 public interface OptionLoader {
 
     <T> T getOption(Option<T> option);
+
     <T> void setOption(Option<T> option, T value);
 
 }

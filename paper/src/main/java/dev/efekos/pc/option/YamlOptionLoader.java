@@ -42,8 +42,8 @@ public class YamlOptionLoader implements OptionLoader {
     @Override
     public <T> T getOption(Option<T> option) {
         try {
-            return config.get().contains(option.getKey(),true) ? option.getOptionType().deserialize(config.get().get(option.getKey())) : option.getDefaultValue();
-        } catch (Exception|Error ignored) {
+            return config.get().contains(option.getKey(), true) ? option.getOptionType().deserialize(config.get().get(option.getKey())) : option.getDefaultValue();
+        } catch (Exception | Error ignored) {
             return option.getDefaultValue();
         }
     }
@@ -51,7 +51,7 @@ public class YamlOptionLoader implements OptionLoader {
     @Override
     public <T> void setOption(Option<T> option, T value) {
         FileConfiguration cf = config.get();
-        cf.set(option.getKey(),option.getOptionType().serialize(value));
+        cf.set(option.getKey(), option.getOptionType().serialize(value));
         config.save();
     }
 

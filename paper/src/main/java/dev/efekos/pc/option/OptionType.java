@@ -51,11 +51,11 @@ public interface OptionType<T> {
     OptionType<Float> FLOAT = of(Float::doubleValue, Double::floatValue);
     OptionType<Double> DOUBLE = noSerialization();
     OptionType<Boolean> BOOLEAN = noSerialization();
-    OptionType<ItemStack> ITEM_STACK = of(ItemStack::serialize,ItemStack::deserialize);
-    OptionType<Location> LOCATION = of(Location::serialize,Location::deserialize);
+    OptionType<ItemStack> ITEM_STACK = of(ItemStack::serialize, ItemStack::deserialize);
+    OptionType<Location> LOCATION = of(Location::serialize, Location::deserialize);
     OptionType<Material> MATERIAL = of(
             material -> material.getKey().toString(),
-            s -> Arrays.stream(Material.values()).filter(mt->mt.getKey().toString().equals(s)).findFirst().orElse(null)
+            s -> Arrays.stream(Material.values()).filter(mt -> mt.getKey().toString().equals(s)).findFirst().orElse(null)
     );
     OptionType<OfflinePlayer> OFFLINE_PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getOfflinePlayer(UUID.fromString(s.toString())));
     OptionType<Player> PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getPlayer(UUID.fromString(s.toString())));
@@ -86,14 +86,10 @@ public interface OptionType<T> {
     OptionType<BookMeta.Generation> BOOK_GENERATION = ofEnum(BookMeta.Generation.class);
 
     private static <T extends Enum<T>> OptionType<T> ofEnum(Class<T> clazz) {
-        return of(T::name, o -> Enum.valueOf(clazz,o.toString()));
+        return of(T::name, o -> Enum.valueOf(clazz, o.toString()));
     }
 
-    default OptionType<List<T>> array(){
-        return of(ts -> ts.stream().map(this::serialize).toList(),s -> ((List<Object>)s).stream().map(this::deserialize).toList());
-    }
-
-    static <T> OptionType<T> noSerialization(){
+    static <T> OptionType<T> noSerialization() {
         return new OptionType<>() {
             @Override
             public Object serialize(T v) {
@@ -102,12 +98,12 @@ public interface OptionType<T> {
 
             @Override
             public T deserialize(Object s) {
-                return (T)s;
+                return (T) s;
             }
         };
     }
 
-    static <T,TTC> OptionType<T> of(Function<T,Object> serializer, Function<TTC,T> deserializer) {
+    static <T, TTC> OptionType<T> of(Function<T, Object> serializer, Function<TTC, T> deserializer) {
         return new OptionType<>() {
             @Override
             public Object serialize(T v) {
@@ -116,12 +112,17 @@ public interface OptionType<T> {
 
             @Override
             public T deserialize(Object s) {
-                return deserializer.apply((TTC)s);
+                return deserializer.apply((TTC) s);
             }
         };
     }
 
+    default OptionType<List<T>> array() {
+        return of(ts -> ts.stream().map(this::serialize).toList(), s -> ((List<Object>) s).stream().map(this::deserialize).toList());
+    }
+
     Object serialize(T v);
+
     T deserialize(Object s);
 
 }

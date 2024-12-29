@@ -30,14 +30,14 @@ public class Option<T> {
     private final T defaultValue;
     private final OptionType<T> optionType;
 
-    public static <T> Option<T> of(String key, OptionType<T> optionType, T defaultValue) {
-        return new Option<>(key,defaultValue,optionType);
-    }
-
     private Option(String key, T defaultValue, OptionType<T> optionType) {
         this.key = key;
         this.defaultValue = defaultValue;
         this.optionType = optionType;
+    }
+
+    public static <T> Option<T> of(String key, OptionType<T> optionType, T defaultValue) {
+        return new Option<>(key, defaultValue, optionType);
     }
 
     public OptionType<T> getOptionType() {
