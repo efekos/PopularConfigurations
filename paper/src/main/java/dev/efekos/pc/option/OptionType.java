@@ -53,12 +53,13 @@ public interface OptionType<T> {
     OptionType<Boolean> BOOLEAN = noSerialization();
     OptionType<ItemStack> ITEM_STACK = of(ItemStack::serialize, ItemStack::deserialize);
     OptionType<Location> LOCATION = of(Location::serialize, Location::deserialize);
+    OptionType<UUID> UUID = of(java.util.UUID::toString, java.util.UUID::fromString);
     OptionType<Material> MATERIAL = of(
             material -> material.getKey().toString(),
             s -> Arrays.stream(Material.values()).filter(mt -> mt.getKey().toString().equals(s)).findFirst().orElse(null)
     );
-    OptionType<OfflinePlayer> OFFLINE_PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getOfflinePlayer(UUID.fromString(s.toString())));
-    OptionType<Player> PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getPlayer(UUID.fromString(s.toString())));
+    OptionType<OfflinePlayer> OFFLINE_PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getOfflinePlayer(java.util.UUID.fromString(s.toString())));
+    OptionType<Player> PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getPlayer(java.util.UUID.fromString(s.toString())));
     OptionType<Instrument> INSTRUMENT = ofEnum(Instrument.class);
     OptionType<Axis> AXIS = ofEnum(Axis.class);
     OptionType<DyeColor> DYE_COLOR = ofEnum(DyeColor.class);

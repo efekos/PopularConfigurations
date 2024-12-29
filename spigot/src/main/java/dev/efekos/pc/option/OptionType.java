@@ -50,6 +50,7 @@ public interface OptionType<T> {
     OptionType<Float> FLOAT = of(Float::doubleValue, Double::floatValue);
     OptionType<Double> DOUBLE = noSerialization();
     OptionType<Boolean> BOOLEAN = noSerialization();
+    OptionType<UUID> UUID = of(java.util.UUID::toString, java.util.UUID::fromString);
     OptionType<ItemStack> ITEM_STACK = of(ItemStack::serialize, ItemStack::deserialize);
     OptionType<Location> LOCATION = of(Location::serialize, Location::deserialize);
     OptionType<Material> MATERIAL = ofEnum(Material.class);
@@ -79,8 +80,8 @@ public interface OptionType<T> {
     OptionType<ItemRarity> ITEM_RARITY = ofEnum(ItemRarity.class);
     OptionType<ItemFlag> ITEM_FLAG = ofEnum(ItemFlag.class);
     OptionType<BookMeta.Generation> BOOK_GENERATION = ofEnum(BookMeta.Generation.class);
-    OptionType<OfflinePlayer> OFFLINE_PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getOfflinePlayer(UUID.fromString(s.toString())));
-    OptionType<Player> PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getPlayer(UUID.fromString(s.toString())));
+    OptionType<OfflinePlayer> OFFLINE_PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getOfflinePlayer(java.util.UUID.fromString(s.toString())));
+    OptionType<Player> PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getPlayer(java.util.UUID.fromString(s.toString())));
 
     private static <T extends Enum<T>> OptionType<T> ofEnum(Class<T> clazz) {
         return of(T::name, o -> Enum.valueOf(clazz, o.toString()));
