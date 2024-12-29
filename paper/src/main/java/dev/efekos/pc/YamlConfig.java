@@ -180,4 +180,10 @@ public class YamlConfig implements Config {
     }
 
 
+    public void save() {
+        try {
+            fileConfiguration.save(file);
+        } catch (Exception|Error ignored) {}
+    }
+
 }

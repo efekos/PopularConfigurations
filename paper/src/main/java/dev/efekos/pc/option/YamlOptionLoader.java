@@ -52,6 +52,7 @@ public class YamlOptionLoader implements OptionLoader {
     public <T> void setOption(Option<T> option, T value) {
         FileConfiguration cf = config.get();
         cf.set(option.getKey(),option.getOptionType().serialize(value));
+        config.save();
     }
 
 }
