@@ -154,16 +154,6 @@ You can also create your own implementations of **OptionType** if you can't find
 want to use. If the class you want to use isn't a custom class in your plugin, you can
 [open an issue](https://github.com/efekos/PopularConfigurations/issues) to add it to builtin option types.
 
-# Contribution
-
-If you want to contribute to this project, you can do so in two ways:
-
-* Find bugs, think of ideas and [open an issue](https://github.com/efekos/PopularConfigurations/issues) about them.
-* Do you changes and [open a pull request](https://github.com/efekos/PopularConfigurations/pulls).
-
-While creating a pull request, please follow a committing style similar to mine as it would look more organized if you
-did. [Gitmoji](https://gitmoji.dev/) is not recommended but allowed.
-
 # License
 
 This project is licensed with the [MIT License](./LICENSE.md).
