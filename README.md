@@ -56,7 +56,7 @@ maven { url = 'https://efekos.dev/maven' }
 implementation 'dev.efekos.pc:pc-paper:1.0'
 ````
 
-## Usage
+# Usage
 
 There are currently three types of configurations in PopularConfigurations. **JsonConfig**s, **YamlConfig**s and
 **MessageProvider**s. YAML and JSON config classes are pretty self-explanatory, they are the same thing but in different
@@ -101,6 +101,68 @@ public class MyPlugin extends JavaPlugin {
 
 }
 ````
+
+## Options
+
+Other than basic configuration classes and **MessageProviders**, this library has one more type of configuration,
+**OptionLoader**. **OptionLoader**s only work with **YamlConfig**s. In order to use **OptionLoader**s, you have to
+create **Option**s to load. Like this:
+
+````java
+import dev.efekos.pc.option.Option;
+import dev.efekos.pc.option.OptionType;
+
+import java.util.List;
+
+public class MyPluginOptions {
+    
+    public static final Option<String> PREFIX = Option.of("prefix", OptionType.STRING, "&6MP: &r");
+    public static final Option<Boolean> CLEAR_CACHE = Option.of("clear-cache.enabled", OptionType.BOOLEAN, true);
+    public static final Option<Integer> CLEAR_CACHE_INTERVAL = Option.of("clear-cache.interval", OptionType.INTEGER, 10);
+    public static final Option<List<OfflinePlayer>> MANAGERS = Option.of("managers", OptionType.OFFLINE_PLAYER.array(), List.of());
+    
+}
+````
+
+Then, you can use `YamlConfig#asOptionLoader()` to get an **OptionLoader** and use options like this:
+
+````java
+
+import dev.efekos.pc.option.OptionLoader;
+import dev.efekos.mp.MyPluginOptions;
+
+public class Utilities {
+    
+    public static OptionLoader OPTION_LOADER;
+    
+    public static String getPrefix(){
+        return OPTION_LOADER.getOption(MyPluginOptions.PREFIX);   
+    }
+    
+    public static boolean isCacheEnabled(){
+        return OPTION_LOADER.getOption(MyPluginOptions.CLEAR_CACHE);
+    }
+    
+    public static boolean isManager(OfflinePlayer player){
+        return OPTION_LOADER.getOption(MyPluginOptions.MANAGERS).contains(player);
+    }
+    
+}
+````
+
+You can also create your own implementations of **OptionType** if you can't find an **OptionType** for the class you
+want to use. If the class you want to use isn't a custom class in your plugin, you can
+[open an issue](https://github.com/efekos/PopularConfigurations/issues) to add it to builtin option types.
+
+# Contribution
+
+If you want to contribute to this project, you can do so in two ways:
+
+* Find bugs, think of ideas and [open an issue](https://github.com/efekos/PopularConfigurations/issues) about them.
+* Do you changes and [open a pull request](https://github.com/efekos/PopularConfigurations/pulls).
+
+While creating a pull request, please follow a committing style similar to mine as it would look more organized if you
+did. [Gitmoji](https://gitmoji.dev/) is not recommended but allowed.
 
 # License
 
