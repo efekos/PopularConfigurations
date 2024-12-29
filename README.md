@@ -13,7 +13,8 @@
   * [Installation](#installation)
     * [Maven](#maven)
     * [Gradle](#gradle)
-  * [Usage](#usage)
+* [Usage](#usage)
+  * [Options](#options)
 * [License](#license)
 <!-- TOC -->
 
