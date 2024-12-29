@@ -24,32 +24,34 @@
 
 package dev.efekos.pc.option;
 
-public class Option<T> {
+import dev.efekos.pc.YamlConfig;
+import org.bukkit.configuration.file.FileConfiguration;
 
-    private final String key;
-    private final T defaultValue;
-    private final OptionType<T,?> optionType;
+public class YamlOptionLoader implements OptionLoader {
 
-    public static <T,S> Option<T> of(String key, OptionType<T,S> optionType, T defaultValue) {
-        return new Option<>(key,defaultValue,optionType);
+    private final YamlConfig config;
+
+    public YamlOptionLoader(YamlConfig config) {
+        this.config = config;
     }
 
-    private Option(String key, T defaultValue, OptionType<T,?> optionType) {
-        this.key = key;
-        this.defaultValue = defaultValue;
-        this.optionType = optionType;
+    public YamlConfig getConfig() {
+        return config;
     }
 
-    public OptionType<T, ?> getOptionType() {
-        return optionType;
+    @Override
+    public <T> T getOption(Option<T> option) {
+        try {
+            return config.get().contains(option.getKey(),true) ? option.getOptionType().deserialize(config.get().get(option.getKey())) : option.getDefaultValue();
+        } catch (Exception|Error ignored) {
+            return option.getDefaultValue();
+        }
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public T getDefaultValue() {
-        return defaultValue;
+    @Override
+    public <T> void setOption(Option<T> option, T value) {
+        FileConfiguration cf = config.get();
+        cf.set(option.getKey(),option.getOptionType().serialize(value));
     }
 
 }

@@ -33,59 +33,58 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.function.Function;
 
-public interface OptionType<T,S> {
+public interface OptionType<T> {
 
-    OptionType<String,String> STRING = noSerialization();
-    OptionType<Integer,Integer> INTEGER = noSerialization();
-    OptionType<Float,Double> FLOAT = of(Float::doubleValue, Double::floatValue);
-    OptionType<Double,Double> DOUBLE = noSerialization();
-    OptionType<Boolean,Boolean> BOOLEAN = noSerialization();
-    OptionType<ItemStack, Map<String, Object>> ITEM_STACK = of(ItemStack::serialize,ItemStack::deserialize);
-    OptionType<Location,Map<String,Object>> LOCATION = of(Location::serialize,Location::deserialize);
-    OptionType<Material,String> MATERIAL = of(
+    OptionType<String> STRING = noSerialization();
+    OptionType<Integer> INTEGER = noSerialization();
+    OptionType<Float> FLOAT = of(Float::doubleValue, Double::floatValue);
+    OptionType<Double> DOUBLE = noSerialization();
+    OptionType<Boolean> BOOLEAN = noSerialization();
+    OptionType<ItemStack> ITEM_STACK = of(ItemStack::serialize,ItemStack::deserialize);
+    OptionType<Location> LOCATION = of(Location::serialize,Location::deserialize);
+    OptionType<Material> MATERIAL = of(
             material -> material.getKey().toString(),
             s -> Arrays.stream(Material.values()).filter(mt->mt.getKey().toString().equals(s)).findFirst().orElse(null)
     );
-    OptionType<OfflinePlayer,String> OFFLINE_PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getOfflinePlayer(UUID.fromString(s)));
-    OptionType<Player,String> PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getPlayer(UUID.fromString(s)));
+    OptionType<OfflinePlayer> OFFLINE_PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getOfflinePlayer(UUID.fromString(s.toString())));
+    OptionType<Player> PLAYER = of(player -> player.getUniqueId().toString(), s -> Bukkit.getPlayer(UUID.fromString(s.toString())));
 
-    default OptionType<List<T>, List<S>> array(){
-        return of(ts -> ts.stream().map(this::serialize).toList(),s -> s.stream().map(this::deserialize).toList());
+    default OptionType<List<T>> array(){
+        return of(ts -> ts.stream().map(this::serialize).toList(),s -> ((List<Object>)s).stream().map(this::deserialize).toList());
     }
 
-    static <T> OptionType<T,T> noSerialization(){
+    static <T> OptionType<T> noSerialization(){
         return new OptionType<>() {
             @Override
-            public T serialize(T v) {
+            public Object serialize(T v) {
                 return v;
             }
 
             @Override
-            public T deserialize(T s) {
-                return s;
+            public T deserialize(Object s) {
+                return (T)s;
             }
         };
     }
 
-    static <T,S> OptionType<T,S> of(Function<T,S> serializer, Function<S,T> deserializer) {
+    static <T,TTC> OptionType<T> of(Function<T,Object> serializer, Function<TTC,T> deserializer) {
         return new OptionType<>() {
             @Override
-            public S serialize(T v) {
+            public Object serialize(T v) {
                 return serializer.apply(v);
             }
 
             @Override
-            public T deserialize(S s) {
-                return deserializer.apply(s);
+            public T deserialize(Object s) {
+                return deserializer.apply((TTC)s);
             }
         };
     }
 
-    S serialize(T v);
-    T deserialize(S s);
+    Object serialize(T v);
+    T deserialize(Object s);
 
 }
