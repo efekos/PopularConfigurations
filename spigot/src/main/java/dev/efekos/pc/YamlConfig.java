@@ -24,6 +24,8 @@
 
 package dev.efekos.pc;
 
+import dev.efekos.pc.option.OptionLoader;
+import dev.efekos.pc.option.YamlOptionLoader;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -179,5 +181,8 @@ public class YamlConfig implements Config {
         fileConfiguration = YamlConfiguration.loadConfiguration(file);
     }
 
+    public OptionLoader asOptionLoader(){
+        return new YamlOptionLoader(this);
+    }
 
 }
