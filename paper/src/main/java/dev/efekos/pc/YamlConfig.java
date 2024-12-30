@@ -26,6 +26,7 @@ package dev.efekos.pc;
 
 import dev.efekos.pc.option.OptionLoader;
 import dev.efekos.pc.option.YamlOptionLoader;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -191,6 +192,12 @@ public class YamlConfig implements Config {
 
     public OptionLoader asOptionLoader(){
         return new YamlOptionLoader(this);
+    }
+
+    public MessageProvider asMessageProviderWithPrefix(Component prefix){
+        ConfigMessageProvider provider = new ConfigMessageProvider(this);
+        provider.setPrefix(prefix);
+        return provider;
     }
 
 }
