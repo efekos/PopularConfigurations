@@ -20,4 +20,6 @@
 ![](https://raw.githubusercontent.com/efekos/efekos/refs/heads/main/icons/symbol-plus.svg) Added `String` prefixes to `MessageProvider`s of the Spigot module.\
 ![](https://raw.githubusercontent.com/efekos/efekos/refs/heads/main/icons/symbol-plus.svg) Added `MessageProvider#formatRaw` and `MessageProvider#formatListRaw` to avoid prefixes when needed.\
 ![](https://raw.githubusercontent.com/efekos/efekos/refs/heads/main/icons/symbol-plus.svg) Added `YamlConfig#asMessageProviderWithPrefix(Component)` for Paper and `YamlConfig#asMessageProviderWithPrefix(String)` for Spigot.\
-![](https://raw.githubusercontent.com/efekos/efekos/refs/heads/main/icons/symbol-change.svg) Made `MessageProvider#format` and `MessageProvider#formatList` default methods that support prefixes. You must now implement raw formatters in your own `MessageProvider`s.
+![](https://raw.githubusercontent.com/efekos/efekos/refs/heads/main/icons/symbol-change.svg) Made `MessageProvider#format` and `MessageProvider#formatList` default methods that support prefixes. You must now implement raw formatters in your own `MessageProvider`s.\
+![](https://raw.githubusercontent.com/efekos/efekos/refs/heads/main/icons/symbol-change.svg) Made `YamlOptionLoader` a record because there isn't a reason not to.\
+![](https://raw.githubusercontent.com/efekos/efekos/refs/heads/main/icons/symbol-deprecated.svg) Deprecated `YamlOptionLoader#getConfig()`: Use `YamlOptionLoader#config()` instead.

@@ -27,17 +27,7 @@ package dev.efekos.pc.option;
 import dev.efekos.pc.YamlConfig;
 import org.bukkit.configuration.file.FileConfiguration;
 
-public class YamlOptionLoader implements OptionLoader {
-
-    private final YamlConfig config;
-
-    public YamlOptionLoader(YamlConfig config) {
-        this.config = config;
-    }
-
-    public YamlConfig getConfig() {
-        return config;
-    }
+public record YamlOptionLoader(YamlConfig config) implements OptionLoader {
 
     @Override
     public <T> T getOption(Option<T> option) {
@@ -53,6 +43,15 @@ public class YamlOptionLoader implements OptionLoader {
         FileConfiguration cf = config.get();
         cf.set(option.getKey(), option.getOptionType().serialize(value));
         config.save();
+    }
+
+    /**
+     * @deprecated Use {@link #config()}.
+     * @return The base config.
+     */
+    @Deprecated(forRemoval = true,since = "1.1.1")
+    public YamlConfig getConfig() {
+        return config;
     }
 
 }
