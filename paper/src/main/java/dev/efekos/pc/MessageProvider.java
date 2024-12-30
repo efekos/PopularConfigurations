@@ -35,22 +35,63 @@ import java.util.List;
 public interface MessageProvider {
 
     /**
-     * Formats the message with the given key.
+     * Formats the message with the given key. Will add the prefix if there is one (check with {@link #hasPrefix()}).
      *
      * @param key          Input key.
      * @param placeholders Placeholders.
      * @return Formatted text.
      */
-    Component format(String key, TagResolver... placeholders);
+    default Component format(String key,TagResolver... placeholders){
+        return hasPrefix()?getPrefix().append(formatRaw(key,placeholders)):formatRaw(key);
+    }
+
 
     /**
-     * Formats a list of messages using the given key.
+     * Formats a list of messages using the given key. Will add the prefix to every line if there is one.
      *
      * @param key          Input key.
      * @param hider        Message line hider, used to hide specific parts of the message list depending on the context.
      * @param placeholders Placeholders.
      * @return Formatted text.
      */
-    List<Component> formatList(String key, MessagePortionHider hider, TagResolver... placeholders);
+    default List<Component> formatList(String key, MessagePortionHider hider, TagResolver... placeholders){
+        return hasPrefix()?formatListRaw(key,hider,placeholders).stream().map(getPrefix()::append).toList():formatListRaw(key,hider,placeholders);
+    }
+
+    /**
+     * Formats the message with the given key. Does not add the prefix.
+     *
+     * @param key          Input key.
+     * @param placeholders Placeholders.
+     * @return Formatted text.
+     */
+    Component formatRaw(String key, TagResolver... placeholders);
+
+    /**
+     * Formats a list of messages using the given key. Does not add the prefix even if there is one.
+     *
+     * @param key          Input key.
+     * @param hider        Message line hider, used to hide specific parts of the message list depending on the context.
+     * @param placeholders Placeholders.
+     * @return Formatted text.
+     */
+    List<Component> formatListRaw(String key, MessagePortionHider hider, TagResolver... placeholders);
+
+    /**
+     * @return Whether this message provider has a prefix or not. The prefix is a message that is added to every message
+     * formatted by this message provider.
+     */
+    boolean hasPrefix();
+
+    /**
+     * @return The prefix of this message provider.
+     */
+    Component getPrefix();
+
+    /**
+     * Changes the prefix of this provider.
+     * @param prefix New prefix.
+     */
+    void setPrefix(Component prefix);
 
 }

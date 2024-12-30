@@ -35,6 +35,7 @@ public class ConfigMessageProvider implements MessageProvider {
 
     private final Config config;
     private final MiniMessage message = MiniMessage.miniMessage();
+    private Component prefix;
 
     public ConfigMessageProvider(Config config) {
         this.config = config;
@@ -45,12 +46,7 @@ public class ConfigMessageProvider implements MessageProvider {
     }
 
     @Override
-    public Component format(String key, TagResolver... resolvers) {
-        return translate("<!italic>" + config.getString(key, "<red>" + key + "</red>"), resolvers);
-    }
-
-    @Override
-    public List<Component> formatList(String key, MessagePortionHider hider, TagResolver... placeholders) {
+    public List<Component> formatListRaw(String key, MessagePortionHider hider, TagResolver... placeholders) {
         List<String> list = config.getStringList(key);
         ArrayList<Component> newList = new ArrayList<>();
         for (String s : list)
@@ -59,6 +55,26 @@ public class ConfigMessageProvider implements MessageProvider {
                 newList.add(translate("<!italic>" + s1, placeholders));
             }
         return newList;
+    }
+
+    @Override
+    public Component formatRaw(String key, TagResolver... placeholders) {
+        return translate("<!italic>" + config.getString(key, "<red>" + key + "</red>"), placeholders);
+    }
+
+    @Override
+    public boolean hasPrefix() {
+        return prefix==null;
+    }
+
+    @Override
+    public Component getPrefix() {
+        return prefix;
+    }
+
+    @Override
+    public void setPrefix(Component prefix) {
+        this.prefix = prefix;
     }
 
 }
