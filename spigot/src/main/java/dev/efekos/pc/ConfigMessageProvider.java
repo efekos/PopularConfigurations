@@ -75,7 +75,7 @@ public class ConfigMessageProvider implements MessageProvider {
 
     @Override
     public boolean hasPrefix() {
-        return prefix==null;
+        return prefix == null;
     }
 
     @Override

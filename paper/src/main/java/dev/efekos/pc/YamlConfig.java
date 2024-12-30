@@ -190,11 +190,11 @@ public class YamlConfig implements Config {
         }
     }
 
-    public OptionLoader asOptionLoader(){
+    public OptionLoader asOptionLoader() {
         return new YamlOptionLoader(this);
     }
 
-    public MessageProvider asMessageProviderWithPrefix(Component prefix){
+    public MessageProvider asMessageProviderWithPrefix(Component prefix) {
         ConfigMessageProvider provider = new ConfigMessageProvider(this);
         provider.setPrefix(prefix);
         return provider;

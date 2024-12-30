@@ -181,11 +181,11 @@ public class YamlConfig implements Config {
         fileConfiguration = YamlConfiguration.loadConfiguration(file);
     }
 
-    public OptionLoader asOptionLoader(){
+    public OptionLoader asOptionLoader() {
         return new YamlOptionLoader(this);
     }
 
-    public MessageProvider asMessageProviderWithPrefix(String prefix){
+    public MessageProvider asMessageProviderWithPrefix(String prefix) {
         ConfigMessageProvider provider = new ConfigMessageProvider(this);
         provider.setPrefix(prefix);
         return provider;

@@ -38,8 +38,8 @@ public interface MessageProvider {
      * @param placeholders Placeholders.
      * @return Formatted text.
      */
-    default String format(String key,Placeholder... placeholders){
-        return hasPrefix()?getPrefix()+(formatRaw(key,placeholders)):formatRaw(key);
+    default String format(String key, Placeholder... placeholders) {
+        return hasPrefix() ? getPrefix() + (formatRaw(key, placeholders)) : formatRaw(key);
     }
 
     /**
@@ -50,8 +50,8 @@ public interface MessageProvider {
      * @param placeholders Placeholders.
      * @return Formatted text.
      */
-    default List<String> formatList(String key, MessagePortionHider hider, Placeholder... placeholders){
-        return hasPrefix()?formatListRaw(key,hider,placeholders).stream().map(s->getPrefix()+s).toList():formatListRaw(key,hider,placeholders);
+    default List<String> formatList(String key, MessagePortionHider hider, Placeholder... placeholders) {
+        return hasPrefix() ? formatListRaw(key, hider, placeholders).stream().map(s -> getPrefix() + s).toList() : formatListRaw(key, hider, placeholders);
     }
 
     /**
@@ -86,6 +86,7 @@ public interface MessageProvider {
 
     /**
      * Changes the prefix of this provider.
+     *
      * @param prefix New prefix.
      */
     void setPrefix(String prefix);

@@ -41,8 +41,8 @@ public interface MessageProvider {
      * @param placeholders Placeholders.
      * @return Formatted text.
      */
-    default Component format(String key,TagResolver... placeholders){
-        return hasPrefix()?getPrefix().append(formatRaw(key,placeholders)):formatRaw(key);
+    default Component format(String key, TagResolver... placeholders) {
+        return hasPrefix() ? getPrefix().append(formatRaw(key, placeholders)) : formatRaw(key);
     }
 
 
@@ -54,8 +54,8 @@ public interface MessageProvider {
      * @param placeholders Placeholders.
      * @return Formatted text.
      */
-    default List<Component> formatList(String key, MessagePortionHider hider, TagResolver... placeholders){
-        return hasPrefix()?formatListRaw(key,hider,placeholders).stream().map(getPrefix()::append).toList():formatListRaw(key,hider,placeholders);
+    default List<Component> formatList(String key, MessagePortionHider hider, TagResolver... placeholders) {
+        return hasPrefix() ? formatListRaw(key, hider, placeholders).stream().map(getPrefix()::append).toList() : formatListRaw(key, hider, placeholders);
     }
 
     /**
@@ -90,6 +90,7 @@ public interface MessageProvider {
 
     /**
      * Changes the prefix of this provider.
+     *
      * @param prefix New prefix.
      */
     void setPrefix(Component prefix);

@@ -46,10 +46,10 @@ public record YamlOptionLoader(YamlConfig config) implements OptionLoader {
     }
 
     /**
-     * @deprecated Use {@link #config()}.
      * @return The base config.
+     * @deprecated Use {@link #config()}.
      */
-    @Deprecated(forRemoval = true,since = "1.1.1")
+    @Deprecated(forRemoval = true, since = "1.1.1")
     public YamlConfig getConfig() {
         return config;
     }
