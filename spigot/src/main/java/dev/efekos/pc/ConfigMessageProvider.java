@@ -35,6 +35,7 @@ public class ConfigMessageProvider implements MessageProvider {
 
     public static final Pattern hexPattern = Pattern.compile("(&#[0-9a-fA-F]{6})");
     private final Config config;
+    private String prefix;
 
     public ConfigMessageProvider(Config config) {
         this.config = config;
@@ -53,14 +54,14 @@ public class ConfigMessageProvider implements MessageProvider {
     }
 
     @Override
-    public String format(String key, Placeholder... placeholders) {
+    public String formatRaw(String key, Placeholder... placeholders) {
         String f = "&r" + config.getString(key, "&c" + key);
         for (Placeholder placeholder : placeholders) f = placeholder.replace(f);
         return translate(f);
     }
 
     @Override
-    public List<String> formatList(String key, MessagePortionHider hider, Placeholder... placeholders) {
+    public List<String> formatListRaw(String key, MessagePortionHider hider, Placeholder... placeholders) {
         List<String> list = config.getStringList(key);
         ArrayList<String> newList = new ArrayList<>();
         for (String s : list)
@@ -70,6 +71,21 @@ public class ConfigMessageProvider implements MessageProvider {
                 newList.add(translate(s1));
             }
         return newList;
+    }
+
+    @Override
+    public boolean hasPrefix() {
+        return prefix==null;
+    }
+
+    @Override
+    public String getPrefix() {
+        return prefix;
+    }
+
+    @Override
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
 }
